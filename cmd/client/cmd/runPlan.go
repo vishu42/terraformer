@@ -1,10 +1,17 @@
 package cmd
 
 import (
+	"net/url"
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/vishu42/terrasome/pkg/httpclient"
 	"github.com/vishu42/terrasome/pkg/targz"
+)
+
+const (
+	FileUploadEndpoint = "/api/v1/upload"
+	ServerAddrEnv      = "SERVER_ADDR"
 )
 
 func checkError(err error) {
@@ -12,6 +19,12 @@ func checkError(err error) {
 		panic(err)
 	}
 }
+
+/*
+ALGORITHM
+- prepare a tar file of the current working directory
+- send the tar file to the server
+*/
 
 func RunPlan(cmd *cobra.Command, args []string) {
 	// create a temp tar file
@@ -26,13 +39,13 @@ func RunPlan(cmd *cobra.Command, args []string) {
 		checkError(err)
 	}()
 
-	tempFile := tempDir + "/plan.tar"
+	tarFile := tempDir + "/plan.tar.gz"
 
 	// log
 	cmd.Println("created temp directory: " + tempDir)
 
-	// create a .tar file
-	file, err := os.Create(tempFile)
+	// create a .tar.gz file
+	file, err := os.Create(tarFile)
 	checkError(err)
 	defer file.Close()
 
@@ -40,8 +53,22 @@ func RunPlan(cmd *cobra.Command, args []string) {
 	cwd, err := os.Getwd()
 	checkError(err)
 
-	// tar the current working directory
 	// log the current working dir
 	cmd.Println("tarring current working directory: " + cwd)
-	targz.Tardir(cwd, tempFile)
+
+	// tar the current working directory
+	err = targz.TarDir(cwd, tarFile)
+	checkError(err)
+
+	// get the server address from env variable
+	serverAddr := os.Getenv(ServerAddrEnv)
+
+	// log the server address
+	cmd.Println("sending tar file to server: " + serverAddr)
+
+	// send the tar file to the server
+	uploadUrl, err := url.JoinPath(serverAddr, FileUploadEndpoint)
+	checkError(err)
+	err = httpclient.UploadFile(tarFile, uploadUrl)
+	checkError(err)
 }
