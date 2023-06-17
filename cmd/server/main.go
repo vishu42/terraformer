@@ -89,16 +89,45 @@ func main() {
 			log.Fatal(err)
 		}
 
-		log.Println("running terraform plan")
 		// run terraform plan
-		cmd := exec.Command("terraform", "plan")
-		cmd.Dir = td + "/plan"
-		stdoutStderr, err := cmd.CombinedOutput()
+		log.Println("running terraform plan")
+
+		_, err = w.Write([]byte("running terraform plan\n"))
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		w.Write(stdoutStderr)
+		cmd := exec.Command("terraform", "plan")
+		cmd.Stdout = w
+		cmd.Dir = td + "/plan"
+		// stdoutPipe, err := cmd.StdoutPipe()
+		// if err != nil {
+		// 	log.Fatal(err)
+		// }
+
+		err = cmd.Start()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		// // log the command output to stdout
+		// go func() {
+		// 	_, err := io.Copy(os.Stdout, stdoutPipe)
+		// 	if err != nil {
+		// 		log.Fatal(err)
+		// 	}
+		// }()
+
+		// wait for the command to finish
+		err = cmd.Wait()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		_, err = w.Write([]byte("terraform plan complete\n"))
+		if err != nil {
+			log.Fatal(err)
+		}
 	})
 
 	s := &http.Server{

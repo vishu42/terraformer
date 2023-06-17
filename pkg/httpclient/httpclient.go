@@ -7,6 +7,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
+	"time"
 )
 
 func UploadFile(filePath string, url string) error {
@@ -49,12 +50,19 @@ func UploadFile(filePath string, url string) error {
 	req.Header.Set("Content-Type", mw.FormDataContentType())
 
 	// Send the request
-	client := &http.Client{}
+	client := &http.Client{
+		Timeout: time.Minute * 5,
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
+
+	_, err = io.Copy(os.Stdout, resp.Body)
+	if err != nil {
+		return err
+	}
 
 	// Check the response status
 	if resp.StatusCode != http.StatusOK {
