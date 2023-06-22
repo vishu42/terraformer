@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -98,17 +100,33 @@ func main() {
 		}
 
 		cmd := exec.Command("terraform", "plan")
-		cmd.Stdout = w
+		// cmd.Stdout = w
 		cmd.Dir = td + "/plan"
-		// stdoutPipe, err := cmd.StdoutPipe()
-		// if err != nil {
-		// 	log.Fatal(err)
-		// }
+		stdoutPipe, err := cmd.StdoutPipe()
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		err = cmd.Start()
 		if err != nil {
 			log.Fatal(err)
 		}
+
+		// Start a separate goroutine to read and process the output
+		go func() {
+			reader := bufio.NewReader(stdoutPipe)
+			for {
+				line, err := reader.ReadString('\n')
+				if err != nil {
+					if err == io.EOF {
+						break
+					}
+					log.Fatal(err)
+				}
+				// Process the output line as needed
+				fmt.Print(line)
+			}
+		}()
 
 		// // log the command output to stdout
 		// go func() {
