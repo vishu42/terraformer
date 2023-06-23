@@ -61,7 +61,11 @@ func RunPlan(cmd *cobra.Command, args []string) {
 	checkError(err)
 
 	// get the server address from env variable
-	serverAddr := os.Getenv(ServerAddrEnv)
+
+	serverAddr, ok := os.LookupEnv(ServerAddrEnv)
+	if !ok {
+		panic("var serverAddr is not set")
+	}
 
 	// log the server address
 	cmd.Println("sending tar file to server: " + serverAddr)

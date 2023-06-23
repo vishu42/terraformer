@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"io"
 	"log"
@@ -11,6 +10,20 @@ import (
 
 	"github.com/vishu42/terrasome/pkg/targz"
 )
+
+type flushWriter struct {
+	w io.Writer
+	f http.Flusher
+}
+
+func (fw *flushWriter) Write(p []byte) (n int, err error) {
+	n, err = fw.w.Write(p)
+	if fw.f != nil {
+		fw.f.Flush()
+	}
+
+	return
+}
 
 func main() {
 	m := http.NewServeMux()
@@ -94,17 +107,24 @@ func main() {
 		// run terraform plan
 		log.Println("running terraform plan")
 
-		_, err = w.Write([]byte("running terraform plan\n"))
 		if err != nil {
 			log.Fatal(err)
 		}
 
+		fw := flushWriter{w: w}
+		f, ok := w.(http.Flusher)
+		if ok {
+			fw.f = f
+		}
+
 		cmd := exec.Command("terraform", "plan")
-		// cmd.Stdout = w
+
+		mw := io.MultiWriter(os.Stdout, &fw)
+		cmd.Stdout = mw
 		cmd.Dir = td + "/plan"
-		stdoutPipe, err := cmd.StdoutPipe()
+
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal(fmt.Errorf("error while flushing buffered data to client: %v", err))
 		}
 
 		err = cmd.Start()
@@ -112,37 +132,12 @@ func main() {
 			log.Fatal(err)
 		}
 
-		// Start a separate goroutine to read and process the output
-		go func() {
-			reader := bufio.NewReader(stdoutPipe)
-			for {
-				line, err := reader.ReadString('\n')
-				if err != nil {
-					if err == io.EOF {
-						break
-					}
-					log.Fatal(err)
-				}
-				// Process the output line as needed
-				fmt.Print(line)
-			}
-		}()
-
-		// // log the command output to stdout
-		// go func() {
-		// 	_, err := io.Copy(os.Stdout, stdoutPipe)
-		// 	if err != nil {
-		// 		log.Fatal(err)
-		// 	}
-		// }()
-
 		// wait for the command to finish
 		err = cmd.Wait()
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		_, err = w.Write([]byte("terraform plan complete\n"))
 		if err != nil {
 			log.Fatal(err)
 		}
