@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 )
 
+// TODO: make sure it works for nested directories
 func TarDir(src, dst string) (err error) {
 	// the destFile must not be present in the srcDir
 	if _, err := os.Stat(filepath.Join(src, dst)); !os.IsNotExist(err) {
