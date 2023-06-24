@@ -17,6 +17,8 @@ func main() {
 	m.HandleFunc("/version", t.Version)
 
 	m.HandleFunc("/plan", t.Action)
+	m.HandleFunc("/apply", t.Action)
+	m.HandleFunc("/destroy", t.Action)
 
 	s := &http.Server{
 		Addr:    ":80",
