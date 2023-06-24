@@ -1,6 +1,7 @@
 package terraform
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -78,8 +79,7 @@ func (t Terraform) TarUpload(w http.ResponseWriter, r *http.Request) (tempDir st
 	// untar
 	err = targz.UntarTar(tempDir, tempDir+"/context.tar.gz")
 	if err != nil {
-		log.Println("error untaring file")
-		log.Fatal(err)
+		log.Fatal(fmt.Errorf("error untarring tar file: %w", err))
 	}
 
 	// cleaup

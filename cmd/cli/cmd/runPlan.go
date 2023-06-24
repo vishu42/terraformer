@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	FileUploadEndpoint = "/api/v1/upload"
+	FileUploadEndpoint = "/plan"
 	ServerAddrEnv      = "SERVER_ADDR"
 )
 
