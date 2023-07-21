@@ -17,7 +17,7 @@ var rootCmd = &cobra.Command{
 	Long: `terrasome a cli tool that is configured to work with terrasome server. It allows us to run the terraform code
 at the server side and provides integrated RBAC for running the terraform modules`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("running rool")
+		fmt.Println("running tool")
 	},
 }
 
@@ -39,5 +39,5 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

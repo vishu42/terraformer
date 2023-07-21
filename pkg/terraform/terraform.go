@@ -35,6 +35,7 @@ type Terraform struct {
 }
 
 func (t Terraform) Version(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("i should be printed after middleware")
 	cmd := exec.Command(t.Binary, "version")
 	stdoutStderr, err := cmd.CombinedOutput()
 	if err != nil {

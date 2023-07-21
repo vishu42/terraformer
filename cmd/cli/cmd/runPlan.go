@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"log"
 	"net/url"
 	"os"
 
@@ -60,11 +61,15 @@ func RunPlan(cmd *cobra.Command, args []string) {
 	err = targz.TarDir(cwd, tarFile)
 	checkError(err)
 
-	// get the server address from env variable
+	// get the server address from flags
+	serverAddr, err := cmd.Flags().GetString("server-addr")
+	if err != nil {
+		checkError(err)
+	}
 
-	serverAddr, ok := os.LookupEnv(ServerAddrEnv)
-	if !ok {
-		panic("var serverAddr is not set")
+	if serverAddr == "" {
+		// get the server address from env
+		log.Fatal("server address not provided")
 	}
 
 	// log the server address
