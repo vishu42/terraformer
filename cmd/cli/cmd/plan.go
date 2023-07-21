@@ -5,13 +5,14 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/vishu42/terrasome/cmd/cli/cmd/run"
 )
 
 // planCmd represents the plan command
 var planCmd = &cobra.Command{
 	Use:   "plan",
 	Short: "plan is equivalent to terraform plan",
-	Run:   RunPlan,
+	Run:   run.RunPlan,
 }
 
 func init() {
