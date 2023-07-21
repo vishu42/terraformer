@@ -4,7 +4,6 @@ Copyright © 2023 vishal tewaita <tewatiavishal3@gmail.com>
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -16,9 +15,6 @@ var rootCmd = &cobra.Command{
 	Short: "Server-side terraform execution plus integrated RBAC",
 	Long: `terrasome a cli tool that is configured to work with terrasome server. It allows us to run the terraform code
 at the server side and provides integrated RBAC for running the terraform modules`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("running tool")
-	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
