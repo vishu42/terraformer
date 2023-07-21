@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/spf13/cobra"
 	"golang.org/x/oauth2"
@@ -49,12 +50,42 @@ func RunLogin(cmd *cobra.Command, args []string) {
 
 		fmt.Println("Token:", token.AccessToken)
 
-		// Shut down the local server
+		// save the token in the config file
+
+		// create a file in home directory
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatal("error getting home directory:", err)
+		}
+		file, err := os.Create(homeDir + "/.terrasome")
+		if err != nil {
+			log.Fatal("error creating config file:", err)
+		}
+		defer file.Close()
+
+		// write the token to the file
+		_, err = file.WriteString(token.AccessToken)
+		if err != nil {
+			log.Fatal("error writing token to config file:", err)
+		}
+
+		// send the response
 		fmt.Println("\nAuthentication successful! You can close the browser.")
 		w.Write([]byte("Authentication successful! You can close the browser."))
-		// server.Shutdown(r.Context())
+
+		// Shutdown the server gracefully
+		// TODO: figure out why browser doesn't show the response message?
+		if err := server.Shutdown(context.Background()); err != nil {
+			log.Fatal("HTTP server Shutdown error:", err)
+		}
 	})
 
-	// TODO: Shutdown the server after the callback is received
-	log.Fatal(server.ListenAndServe())
+	err := server.ListenAndServe()
+	if err != nil {
+		if err == http.ErrServerClosed {
+			fmt.Println("HTTP server closed.")
+		} else {
+			log.Fatal("HTTP server ListenAndServe error:", err)
+		}
+	}
 }

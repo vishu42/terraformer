@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -10,23 +9,25 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
+type PublicKeySet struct {
+	Keys []PublicKey `json:"keys"`
+}
 type PublicKey struct {
-	KTY    string `json:"kty"`
-	KID    string `json:"kid"`
-	Use    string `json:"use"`
-	N      string `json:"n"`
-	E      string `json:"e"`
-	X5C    string `json:"x5c"`
-	Issuer string `json:"issuer"`
+	KTY    string   `json:"kty"`
+	KID    string   `json:"kid"`
+	Use    string   `json:"use"`
+	N      string   `json:"n"`
+	E      string   `json:"e"`
+	X5C    []string `json:"x5c"`
+	Issuer string   `json:"issuer"`
 }
 
-func GetMsPublicKey() []PublicKey {
+func GetMsPublicKey() PublicKeySet {
 	microsoftKeysURL := "https://login.microsoftonline.com/common/discovery/v2.0/keys"
 
 	client := &http.Client{}
 
-	body := &bytes.Buffer{}
-	req, err := http.NewRequest(http.MethodGet, microsoftKeysURL, body)
+	req, err := http.NewRequest(http.MethodGet, microsoftKeysURL, nil)
 	if err != nil {
 		log.Fatalf("unable to generate http req - %v", err)
 	}
@@ -40,18 +41,20 @@ func GetMsPublicKey() []PublicKey {
 		log.Fatal("Status Not OK")
 	}
 
-	var publicKey []PublicKey
-	err = resp.Body.Close()
+	defer resp.Body.Close()
+
 	if err != nil {
 		log.Fatalf("error closing resp body - %v", err)
 	}
 
-	err = json.NewDecoder(resp.Body).Decode(&publicKey)
+	var publicKeys PublicKeySet
+
+	err = json.NewDecoder(resp.Body).Decode(&publicKeys)
 	if err != nil {
 		log.Fatalf("error decoding resp body - %v", err)
 	}
 
-	return publicKey
+	return publicKeys
 }
 
 type EnsureAuth struct {
@@ -85,9 +88,9 @@ func (ea *EnsureAuth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 		// find the public key
 		var key string
-		for _, v := range publicKeySet {
+		for _, v := range publicKeySet.Keys {
 			if v.KID == token.Header["kid"] {
-				key = v.X5C
+				key = v.X5C[0]
 				break
 			}
 		}
