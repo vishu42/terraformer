@@ -12,7 +12,6 @@ import (
 
 const (
 	FileUploadEndpoint = "/plan"
-	ServerAddrEnv      = "SERVER_ADDR"
 )
 
 func checkError(err error) {
