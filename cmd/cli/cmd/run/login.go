@@ -55,5 +55,6 @@ func RunLogin(cmd *cobra.Command, args []string) {
 		// server.Shutdown(r.Context())
 	})
 
+	// TODO: Shutdown the server after the callback is received
 	log.Fatal(server.ListenAndServe())
 }
