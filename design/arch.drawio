@@ -4,43 +4,49 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
+                <mxCell id="5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="20" y="70" width="1140" height="318.13" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=default;" vertex="1" parent="1">
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="460" y="160" width="510" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" style="edgeStyle=none;html=1;rounded=1;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="11" target="12">
+                <mxCell id="15" style="edgeStyle=none;html=1;rounded=1;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="11" target="12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
+                <mxCell id="11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="80" y="160" width="240" height="160" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" style="edgeStyle=none;rounded=1;html=1;dashed=1;" edge="1" parent="1" source="12">
+                <mxCell id="20" style="edgeStyle=none;rounded=1;html=1;dashed=1;" parent="1" source="12" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="680" y="240" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="12" value="api" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
+                <mxCell id="12" value="api" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="610" y="230" width="20" height="22.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Middleware" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=default;" vertex="1" parent="1">
+                <mxCell id="14" value="Middleware" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=default;" parent="1" vertex="1">
                     <mxGeometry x="470" y="230" width="60" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="terraform" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
-                    <mxGeometry x="680" y="225" width="60" height="30" as="geometry"/>
+                <mxCell id="21" value="terraform cli" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="225" width="110" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=1;" edge="1" parent="1">
+                <mxCell id="23" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="490" y="440" as="sourcePoint"/>
+                        <mxPoint x="490" y="400" as="sourcePoint"/>
                         <mxPoint x="490" y="30" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="24" value="auth layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=default;fillColor=none;dashed=1;" vertex="1" parent="1">
+                <mxCell id="24" value="auth layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=default;fillColor=none;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="490" y="30" width="80" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="client" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
+                <mxCell id="25" value="client" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
                     <mxGeometry x="170" y="225" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="server" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="910" y="130" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="30 thousand feet overview" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="510" y="420" width="160" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
