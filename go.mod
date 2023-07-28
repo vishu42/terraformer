@@ -1,4 +1,4 @@
-module github.com/vishu42/terrasome
+module github.com/vishu42/terraformer
 
 go 1.20
 

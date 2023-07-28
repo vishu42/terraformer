@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/vishu42/terrasome/pkg/targz"
+	"github.com/vishu42/terraformer/pkg/targz"
 )
 
 type flushWriter struct {
@@ -60,7 +60,7 @@ func (t Terraform) TarUpload(w http.ResponseWriter, r *http.Request) (tempDir st
 	defer formFile.Close()
 
 	// create temp directory to store the file
-	tempDir, err = os.MkdirTemp("", "terrasome")
+	tempDir, err = os.MkdirTemp("", "terraformer")
 	if err != nil {
 		log.Fatal(err)
 	}

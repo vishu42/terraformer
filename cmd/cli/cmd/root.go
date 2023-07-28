@@ -11,9 +11,9 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "terrasome",
+	Use:   "terraformer",
 	Short: "Server-side terraform execution plus integrated RBAC",
-	Long: `terrasome a cli tool that is configured to work with terrasome server. It allows us to run the terraform code
+	Long: `terraformer a cli tool that is configured to work with terraformer server. It allows us to run the terraform code
 at the server side and provides integrated RBAC for running the terraform modules`,
 }
 

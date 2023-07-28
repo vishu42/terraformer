@@ -57,7 +57,7 @@ func RunLogin(cmd *cobra.Command, args []string) {
 		if err != nil {
 			log.Fatal("error getting home directory:", err)
 		}
-		file, err := os.Create(homeDir + "/.terrasome")
+		file, err := os.Create(homeDir + "/.terraformer")
 		if err != nil {
 			log.Fatal("error creating config file:", err)
 		}

@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/vishu42/terrasome/cmd/cli/cmd/run"
+	"github.com/vishu42/terraformer/cmd/cli/cmd/run"
 )
 
 // planCmd represents the plan command

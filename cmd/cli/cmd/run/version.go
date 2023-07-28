@@ -27,10 +27,10 @@ func RunVersion(cmd *cobra.Command, args []string) {
 		log.Fatal("error getting home directory:", err)
 	}
 
-	// read ~/.terrasome file
-	file, err := os.ReadFile(homeDir + "/.terrasome")
+	// read ~/.terraformer file
+	file, err := os.ReadFile(homeDir + "/.terraformer")
 	if err != nil {
-		log.Fatal("error reading ~/.terrasome file:", err)
+		log.Fatal("error reading ~/.terraformer file:", err)
 	}
 
 	// get the auth token from the file

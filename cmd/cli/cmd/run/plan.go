@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/vishu42/terrasome/pkg/httpclient"
-	"github.com/vishu42/terrasome/pkg/targz"
+	"github.com/vishu42/terraformer/pkg/httpclient"
+	"github.com/vishu42/terraformer/pkg/targz"
 )
 
 const (
@@ -28,7 +28,7 @@ ALGORITHM
 
 func RunPlan(cmd *cobra.Command, args []string) {
 	// create a temp tar file
-	tempDir, err := os.MkdirTemp("", "terrasome")
+	tempDir, err := os.MkdirTemp("", "terraformer")
 	checkError(err)
 
 	defer func() {

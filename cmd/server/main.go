@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/vishu42/terrasome/pkg/middleware"
-	"github.com/vishu42/terrasome/pkg/terraform"
+	"github.com/vishu42/terraformer/pkg/middleware"
+	"github.com/vishu42/terraformer/pkg/terraform"
 )
 
 func main() {
