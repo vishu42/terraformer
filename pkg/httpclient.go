@@ -1,4 +1,4 @@
-package httpclient
+package pkg
 
 import (
 	"bytes"
@@ -6,9 +6,44 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
+	"net/url"
 	"os"
 	"time"
 )
+
+type Client struct {
+	// URL is the base URL for the API requests.
+	URL *url.URL
+
+	// HTTP client used to communicate with the API.
+	client *http.Client
+
+	// Logger is the logger used to log messages.
+	Logger Logger
+
+	// Debug specifies whether to log debug messages.
+	Debug bool
+}
+
+// NewClient returns a new API client.
+func NewClient(urlStr string, debug bool) (*Client, error) {
+	baseURL, err := url.Parse(urlStr)
+	if err != nil {
+		return nil, err
+	}
+
+	logger, err := New(debug)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Client{
+		URL:    baseURL,
+		client: http.DefaultClient,
+		Logger: logger,
+		Debug:  debug,
+	}, nil
+}
 
 func UploadFile(filePath string, url string) error {
 	// log the url

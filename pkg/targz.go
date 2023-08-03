@@ -1,4 +1,4 @@
-package targz
+package pkg
 
 import (
 	"archive/tar"

@@ -1,4 +1,4 @@
-package terraform
+package pkg
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-
-	"github.com/vishu42/terraformer/pkg/targz"
 )
 
 type flushWriter struct {
@@ -78,7 +76,7 @@ func (t Terraform) TarUpload(w http.ResponseWriter, r *http.Request) (tempDir st
 	}
 
 	// untar
-	err = targz.UntarTar(tempDir, tempDir+"/context.tar.gz")
+	err = UntarTar(tempDir, tempDir+"/context.tar.gz")
 	if err != nil {
 		log.Fatal(fmt.Errorf("error untarring tar file: %w", err))
 	}

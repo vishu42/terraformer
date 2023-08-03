@@ -3,12 +3,11 @@ package main
 import (
 	"net/http"
 
-	"github.com/vishu42/terraformer/pkg/middleware"
-	"github.com/vishu42/terraformer/pkg/terraform"
+	"github.com/vishu42/terraformer/pkg"
 )
 
 func main() {
-	t := terraform.Terraform{
+	t := pkg.Terraform{
 		Context: "",
 		Binary:  "terraform",
 	}
@@ -21,7 +20,7 @@ func main() {
 	m.HandleFunc("/apply", t.Action)
 	m.HandleFunc("/destroy", t.Action)
 
-	ea := middleware.NewEnsureAuth(m)
+	ea := pkg.NewEnsureAuth(m)
 
 	s := &http.Server{
 		Addr:    ":80",

@@ -6,5 +6,6 @@ package main
 import "github.com/vishu42/terraformer/cmd/cli/cmd"
 
 func main() {
-	cmd.Execute()
+	cg := cmd.CommandGroup{}
+	cg.All().Execute()
 }

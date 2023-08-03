@@ -1,4 +1,4 @@
-package run
+package impl
 
 import (
 	"log"
@@ -6,13 +6,17 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/vishu42/terraformer/pkg/httpclient"
-	"github.com/vishu42/terraformer/pkg/targz"
+	"github.com/vishu42/terraformer/pkg"
 )
 
 const (
 	FileUploadEndpoint = "/plan"
 )
+
+type PlanOpts struct {
+	// server address
+	ServerAddr string
+}
 
 func checkError(err error) {
 	if err != nil {
@@ -26,7 +30,12 @@ ALGORITHM
 - send the tar file to the server
 */
 
-func RunPlan(cmd *cobra.Command, args []string) {
+func RunPlan(cmd *cobra.Command, args []string, o *PlanOpts) {
+	// log svr
+	cmd.Println("server address: " + o.ServerAddr)
+
+	// quit
+	log.Fatal("quitting")
 	// create a temp tar file
 	tempDir, err := os.MkdirTemp("", "terraformer")
 	checkError(err)
@@ -57,7 +66,7 @@ func RunPlan(cmd *cobra.Command, args []string) {
 	cmd.Println("tarring current working directory: " + cwd)
 
 	// tar the current working directory
-	err = targz.TarDir(cwd, tarFile)
+	err = pkg.TarDir(cwd, tarFile)
 	checkError(err)
 
 	// get the server address from flags
@@ -68,7 +77,7 @@ func RunPlan(cmd *cobra.Command, args []string) {
 
 	if serverAddr == "" {
 		// get the server address from env
-		log.Fatal("server address not provided")
+		log.Fatalf("server address not provided")
 	}
 
 	// log the server address
@@ -77,6 +86,6 @@ func RunPlan(cmd *cobra.Command, args []string) {
 	// send the tar file to the server
 	uploadUrl, err := url.JoinPath(serverAddr, FileUploadEndpoint)
 	checkError(err)
-	err = httpclient.UploadFile(tarFile, uploadUrl)
+	err = pkg.UploadFile(tarFile, uploadUrl)
 	checkError(err)
 }
