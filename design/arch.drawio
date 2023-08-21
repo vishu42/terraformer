@@ -1,105 +1,105 @@
-<mxfile host="Electron" modified="2023-07-30T09:39:47.724Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" version="21.6.5" etag="p-u2rZwYJaFO2q5OGFfP" type="device">
-  <diagram id="sUdqUueGnoYVYH_W2FBT" name="Page-1">
-    <mxGraphModel dx="1306" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="oea57iBLFvBRNvmXKCr4-27" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="560" width="800" height="400" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-29" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="600" width="280" height="320" as="geometry" />
-        </mxCell>
-        <mxCell id="5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="20" y="70" width="1140" height="318.13" as="geometry" />
-        </mxCell>
-        <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=default;" parent="1" vertex="1">
-          <mxGeometry x="460" y="160" width="510" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="80" y="160" width="240" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="20" style="edgeStyle=none;rounded=1;html=1;dashed=1;" parent="1" source="12" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="680" y="240" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="12" value="api" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="610" y="230" width="20" height="22.5" as="geometry" />
-        </mxCell>
-        <mxCell id="14" value="Middleware" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="470" y="230" width="60" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="21" value="terraform cli" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="680" y="225" width="110" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="23" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=1;" parent="1" edge="1">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="490" y="430" as="sourcePoint" />
-            <mxPoint x="490" y="30" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="24" value="auth layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=default;fillColor=none;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="450" width="80" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="25" value="cli client" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="170" y="225" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="26" value="server" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="910" y="130" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="27" value="30 thousand feet overview" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
-          <mxGeometry x="510" y="420" width="160" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-28" value="db storage layout" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="685" y="530" width="150" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-31" value="namespace A" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="580" y="920" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-35" value="Project 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="510" y="650" width="60" height="10" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-36" value="Project 2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="510" y="680" width="60" height="10" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-37" value="Project 3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="510" y="710" width="60" height="10" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-63" value="API DESIGN" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="220" y="1604" width="90" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-64" value="&lt;h1&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform - this api deals with terraform operations like plan, init, apply, delete etc&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/plan - run a plan&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/apply - run apply&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/destroy - run destroy&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/init - run init (internal api)&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/projects - this api would create, list, delete or update the projects&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="210" y="1634" width="660" height="176" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-68" value="&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Each project is a terraform workspace&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Terraform workspace is unique per instance&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="630" width="370" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-69" value="HTTPS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="360" y="200" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-71" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="11" target="4">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="520" y="390" as="sourcePoint" />
-            <mxPoint x="570" y="340" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-72" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="4" target="12">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="520" y="390" as="sourcePoint" />
-            <mxPoint x="570" y="340" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-73" value="Database" style="whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;rounded=0;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="705" y="160" width="60" height="38.75" as="geometry" />
-        </mxCell>
-        <mxCell id="oea57iBLFvBRNvmXKCr4-75" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="12" target="oea57iBLFvBRNvmXKCr4-73">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="520" y="370" as="sourcePoint" />
-            <mxPoint x="570" y="320" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram id="sUdqUueGnoYVYH_W2FBT" name="Page-1">
+        <mxGraphModel dx="567" dy="595" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-27" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="560" width="800" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-29" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="600" width="280" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="70" width="1140" height="318.13" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;strokeColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="160" width="510" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="160" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" style="edgeStyle=none;rounded=1;html=1;dashed=1;" parent="1" source="12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="680" y="240" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="api" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="230" width="20" height="22.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Middleware" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="230" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="terraform cli" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="225" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=1;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="490" y="430" as="sourcePoint"/>
+                        <mxPoint x="490" y="30" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="auth layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=default;fillColor=none;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="450" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="cli client" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="225" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="server" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="130" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="30 thousand feet overview" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="420" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-28" value="db storage layout" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="685" y="530" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-31" value="namespace A" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="920" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-35" value="Project 1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="650" width="60" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-36" value="Project 2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="680" width="60" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-37" value="Project 3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="710" width="60" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-63" value="API DESIGN" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="1604" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-64" value="&lt;h1&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform - this api deals with terraform operations like plan, init, apply, delete etc&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/plan - run a plan&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/apply - run apply&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/destroy - run destroy&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/terraform/init - run init (internal api)&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/projects - this api would create, list, delete or update the projects&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;/internal - this api is internal api which will not be used directly, but rather by other apis.&amp;nbsp;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="1634" width="660" height="176" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-68" value="&lt;div style=&quot;&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Each project is a terraform workspace&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Terraform workspace is unique per instance&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="1180" y="630" width="370" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-69" value="HTTPS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="200" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-71" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="11" target="4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="520" y="390" as="sourcePoint"/>
+                        <mxPoint x="570" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-72" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="4" target="12" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="520" y="390" as="sourcePoint"/>
+                        <mxPoint x="570" y="340" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-73" value="Database" style="whiteSpace=wrap;html=1;fillColor=none;gradientColor=none;rounded=0;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="705" y="160" width="60" height="38.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="oea57iBLFvBRNvmXKCr4-75" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" parent="1" source="12" target="oea57iBLFvBRNvmXKCr4-73" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="520" y="370" as="sourcePoint"/>
+                        <mxPoint x="570" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>

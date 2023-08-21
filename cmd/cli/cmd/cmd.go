@@ -47,12 +47,6 @@ func (c *CommandGroup) RootCmd() *cobra.Command {
 		Short: "Server-side terraform execution plus integrated RBAC",
 		Long: `terraformer a cli tool that is configured to work with terraformer server. It allows us to run the terraform code
 	at the server side and provides integrated RBAC for running the terraform modules`,
-		Run: func(cmd *cobra.Command, args []string) {
-			// get debug flag from viper
-			debug := viper.GetBool("debug")
-			// print debug flag
-			cmd.Println("debug flag: ", debug)
-		},
 	}
 	// set debug flag
 	rootCmd.PersistentFlags().Bool("debug", false, "enable debug mode")
@@ -66,7 +60,6 @@ func (c *CommandGroup) PlanCommand() (cmds *cobra.Command) {
 		Use:   "plan",
 		Short: "plan is equivalent to terraform plan",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("inside plan command 3")
 			impl.RunPlan(cmd, args, o)
 		},
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -89,10 +82,16 @@ func (c *CommandGroup) LoginCommand() (cmd *cobra.Command) {
 }
 
 func (c *CommandGroup) VersionCommand() (cmd *cobra.Command) {
+	o := &impl.VersionOpts{}
 	v := &cobra.Command{
 		Use:   "version",
 		Short: "displays the version of client and server",
-		Run:   impl.RunVersion,
+		Run: func(cmd *cobra.Command, args []string) {
+			impl.RunVersion(cmd, args, o)
+		},
+		PreRun: func(cmd *cobra.Command, args []string) {
+			o.ServerAddr = viper.GetString("server")
+		},
 	}
 
 	return v

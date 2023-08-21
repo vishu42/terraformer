@@ -14,12 +14,14 @@ const (
 	VersionEndpoint = "/version"
 )
 
-func RunVersion(cmd *cobra.Command, args []string) {
+type VersionOpts struct {
+	// server address
+	ServerAddr string
+}
+
+func RunVersion(cmd *cobra.Command, args []string, o *VersionOpts) {
 	// get the server address from the command line argument
-	serverAddr, err := cmd.Flags().GetString("server-addr")
-	if err != nil {
-		log.Fatal(fmt.Errorf("error getting server address: %v", err))
-	}
+	serverAddr := o.ServerAddr
 
 	// create a file in home directory
 	homeDir, err := os.UserHomeDir()

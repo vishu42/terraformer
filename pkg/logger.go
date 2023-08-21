@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"context"
 	"errors"
 	"fmt"
 
@@ -39,4 +40,15 @@ func New(debug bool) (l *zap.SugaredLogger, err error) {
 	}
 
 	return log.Sugar(), nil
+}
+
+type loggerKey struct{}
+
+func NewContext(ctx context.Context, l Logger) context.Context {
+	return context.WithValue(ctx, loggerKey{}, l)
+}
+
+func FromContext(ctx context.Context) (l Logger, ok bool) {
+	l, ok = ctx.Value(loggerKey{}).(Logger)
+	return
 }
