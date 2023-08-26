@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+
+	"github.com/vishu42/terraformer/pkg/oauth"
 )
 
 type flushWriter struct {
@@ -33,8 +35,24 @@ type Terraform struct {
 }
 
 func (t Terraform) Version(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-	cmd := exec.CommandContext(ctx, t.Binary, "version")
+	oauthClaims, ok := oauth.FromContext(r.Context())
+	if !ok {
+		log.Fatal("error getting oauth claims from context")
+	}
+
+	auth := false
+	for _, role := range oauthClaims.Roles {
+		if role == "Terraformer.deployer" {
+			auth = true
+		}
+	}
+
+	if !auth {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
+	cmd := exec.CommandContext(r.Context(), t.Binary, "version")
 	stdoutStderr, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatal(err)

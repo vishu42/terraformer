@@ -12,9 +12,11 @@ import (
 	"golang.org/x/oauth2/microsoft"
 )
 
+const ClientId = "292def6c-3c4c-42ed-9ef2-8a197c7abc33"
+
 func RunLogin(cmd *cobra.Command, args []string) {
 	// Replace with your Azure App Registration configuration
-	clientID := "292def6c-3c4c-42ed-9ef2-8a197c7abc33"
+	clientID := ClientId
 	// clientSecret := "dlG8Q~n5mpzNhWQPGHMFFzTCtb-i6q0FNm066a50"
 	redirectURL := "http://localhost:8000/callback"
 	scopes := []string{"api://292def6c-3c4c-42ed-9ef2-8a197c7abc33/SCOPE1"} // Specify the required scopes

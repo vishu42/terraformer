@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	config := pkg.LoadConfig()
 	t := pkg.Terraform{
 		Context: "",
 		Binary:  "terraform",
@@ -20,7 +21,7 @@ func main() {
 	m.HandleFunc("/apply", t.Action)
 	m.HandleFunc("/destroy", t.Action)
 
-	ea := pkg.NewEnsureAuth(m)
+	ea := pkg.NewEnsureAuth(&config, m)
 
 	s := &http.Server{
 		Addr:    ":80",

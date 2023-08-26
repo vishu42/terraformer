@@ -1,64 +1,18 @@
 package pkg
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
-	"log"
 	"net/http"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/vishu42/terraformer/pkg/logger"
+	"github.com/vishu42/terraformer/pkg/oauth"
 )
-
-type PublicKeySet struct {
-	Keys []PublicKey `json:"keys"`
-}
-type PublicKey struct {
-	KTY    string   `json:"kty"`
-	KID    string   `json:"kid"`
-	Use    string   `json:"use"`
-	N      string   `json:"n"`
-	E      string   `json:"e"`
-	X5C    []string `json:"x5c"`
-	Issuer string   `json:"issuer"`
-}
-
-func GetMsPublicKey() PublicKeySet {
-	microsoftKeysURL := "https://login.microsoftonline.com/common/discovery/v2.0/keys"
-
-	client := &http.Client{}
-
-	req, err := http.NewRequest(http.MethodGet, microsoftKeysURL, nil)
-	if err != nil {
-		log.Fatalf("unable to generate http req - %v", err)
-	}
-
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatalf("error executing http req - %v", err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		log.Fatal("Status Not OK")
-	}
-
-	defer resp.Body.Close()
-
-	if err != nil {
-		log.Fatalf("error closing resp body - %v", err)
-	}
-
-	var publicKeys PublicKeySet
-
-	err = json.NewDecoder(resp.Body).Decode(&publicKeys)
-	if err != nil {
-		log.Fatalf("error decoding resp body - %v", err)
-	}
-
-	return publicKeys
-}
 
 type EnsureAuth struct {
 	logHandler http.Handler
+	Logger     logger.Logger
+	Config     *Config
 }
 
 func (ea *EnsureAuth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -75,48 +29,47 @@ func (ea *EnsureAuth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// get the token
 	token := authHeader[len("Bearer "):]
 
-	// get the public key set
-	publicKeySet := GetMsPublicKey()
+	// parse the token
+	_, c, err := oauth.ParseToken(token)
+	if err != nil {
+		fmt.Println("error parsing token - ", err)
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("Unauthorized"))
+		return
+	}
 
-	// verify the token
-	// Parse the token without verifying the signature
-	t, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
-		// Don't forget to validate the alg is what you expect:
-		if _, ok := token.Method.(*jwt.SigningMethodRSA); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
+	fmt.Println("middleware", c)
 
-		// find the public key
-		var key string
-		for _, v := range publicKeySet.Keys {
-			if v.KID == token.Header["kid"] {
-				key = v.X5C[0]
-				break
-			}
-		}
+	// get the user info
+	userInfo, err := GetUserInfo(token, ea.Config.ClientSecret)
+	if err != nil {
+		fmt.Println("error getting user info - ", err)
+	}
 
-		// embed the public key in the PEM format
-		pem := "-----BEGIN CERTIFICATE-----\n" + key + "\n-----END CERTIFICATE-----"
+	fmt.Println("WELCOME", userInfo.Email)
+	w.Write([]byte("WELCOME " + userInfo.Email + "\n"))
 
-		// parse the PEM encoded public key
-		result, err := jwt.ParseRSAPublicKeyFromPEM([]byte(pem))
-		if err != nil {
-			return nil, err
-		}
-
-		return result, nil
-	})
 	if err != nil {
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
 
-	// print the claims
-	fmt.Println(t.Claims)
+	// // print the claims
+	// fmt.Println(t.Claims)
+
+	// set the claims in the context
+	r = r.WithContext(oauth.NewContext(context.Background(), c))
+
+	// set the logger in the context
+	// r = r.WithContext(logger.NewContext(context.Background(), ea.Logger))
 
 	ea.logHandler.ServeHTTP(w, r)
 }
 
-func NewEnsureAuth(handlerToWrap http.Handler) *EnsureAuth {
-	return &EnsureAuth{handlerToWrap}
+func NewEnsureAuth(config *Config, h http.Handler) *EnsureAuth {
+	l, err := logger.New(config.Debug)
+	if err != nil {
+		panic(err)
+	}
+	return &EnsureAuth{h, l, config}
 }
