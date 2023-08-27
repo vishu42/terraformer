@@ -61,7 +61,7 @@ func (ea *EnsureAuth) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	r = r.WithContext(oauth.NewContext(context.Background(), c))
 
 	// set the logger in the context
-	// r = r.WithContext(logger.NewContext(context.Background(), ea.Logger))
+	r = r.WithContext(logger.NewContext(r.Context(), ea.Logger))
 
 	ea.logHandler.ServeHTTP(w, r)
 }

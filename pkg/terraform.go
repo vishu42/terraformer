@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/vishu42/terraformer/pkg/logger"
 	"github.com/vishu42/terraformer/pkg/oauth"
 )
 
@@ -40,6 +41,12 @@ func (t Terraform) Version(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("error getting oauth claims from context")
 	}
 
+	// get logger from context
+	logger, ok := logger.FromContext(r.Context())
+	if !ok {
+		log.Fatal("error getting logger from context")
+	}
+
 	auth := false
 	for _, role := range oauthClaims.Roles {
 		if role == "Terraformer.deployer" {
@@ -48,6 +55,8 @@ func (t Terraform) Version(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !auth {
+		logger.Infof("unauthorized access to /version")
+
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
