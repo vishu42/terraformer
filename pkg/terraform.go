@@ -12,20 +12,6 @@ import (
 	"github.com/vishu42/terraformer/pkg/oauth"
 )
 
-type flushWriter struct {
-	w io.Writer
-	f http.Flusher
-}
-
-func (fw *flushWriter) Write(p []byte) (n int, err error) {
-	n, err = fw.w.Write(p)
-	if fw.f != nil {
-		fw.f.Flush()
-	}
-
-	return
-}
-
 type Terraformer interface {
 	Plan(w http.ResponseWriter, r *http.Request)
 }
@@ -127,7 +113,7 @@ func (t Terraform) Action(w http.ResponseWriter, r *http.Request) {
 	t.Context = tempDir
 	defer cleanTempDir()
 
-	fw := flushWriter{w: w}
+	fw := FlushWriter{w: w}
 	f, ok := w.(http.Flusher)
 	if ok {
 		fw.f = f

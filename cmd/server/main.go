@@ -21,6 +21,12 @@ func main() {
 	m.HandleFunc("/apply", t.Action)
 	m.HandleFunc("/destroy", t.Action)
 
+	m.HandleFunc("/new-template", pkg.CreateTemplateHandler)
+
+	m.HandleFunc("/templates", pkg.ListTemplatesHandler)
+
+	m.HandleFunc("/create-deployment", pkg.DeploymentPlanHandler)
+
 	ea := pkg.NewEnsureAuth(&config, m)
 
 	s := &http.Server{
