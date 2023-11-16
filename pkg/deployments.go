@@ -12,7 +12,7 @@ import (
 	"github.com/vishu42/terraformer/pkg/github"
 )
 
-func DeploymentPlanHandler(w http.ResponseWriter, r *http.Request) {
+func CreateDeploymentHandler(w http.ResponseWriter, r *http.Request) {
 	// method must be POST
 	if r.Method != "POST" {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

@@ -3,29 +3,26 @@ package main
 import (
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/vishu42/terraformer/pkg"
 )
 
 func main() {
 	config := pkg.LoadConfig()
-	t := pkg.Terraform{
-		Context: "",
-		Binary:  "terraform",
-	}
+	// t := pkg.Terraform{
+	// 	Context: "",
+	// 	Binary:  "terraform",
+	// }
+	// m.HandleFunc("/plan", t.Action)
+	// m.HandleFunc("/apply", t.Action)
+	// m.HandleFunc("/destroy", t.Action)
 
-	m := http.NewServeMux()
+	m := mux.NewRouter()
 
-	m.HandleFunc("/version", t.Version)
+	m.HandleFunc("/template", pkg.CreateTemplateHandler).Methods("POST")
+	m.HandleFunc("/template", pkg.ListTemplatesHandler).Methods("GET")
 
-	m.HandleFunc("/plan", t.Action)
-	m.HandleFunc("/apply", t.Action)
-	m.HandleFunc("/destroy", t.Action)
-
-	m.HandleFunc("/new-template", pkg.CreateTemplateHandler)
-
-	m.HandleFunc("/templates", pkg.ListTemplatesHandler)
-
-	m.HandleFunc("/create-deployment", pkg.DeploymentPlanHandler)
+	m.HandleFunc("/deployment", pkg.CreateDeploymentHandler).Methods("POST")
 
 	ea := pkg.NewEnsureAuth(&config, m)
 
