@@ -9,20 +9,13 @@ import (
 
 func main() {
 	config := pkg.LoadConfig()
-	// t := pkg.Terraform{
-	// 	Context: "",
-	// 	Binary:  "terraform",
-	// }
-	// m.HandleFunc("/plan", t.Action)
-	// m.HandleFunc("/apply", t.Action)
-	// m.HandleFunc("/destroy", t.Action)
 
 	m := mux.NewRouter()
 
 	m.HandleFunc("/template", pkg.CreateTemplateHandler).Methods("POST")
 	m.HandleFunc("/template", pkg.ListTemplatesHandler).Methods("GET")
-
-	m.HandleFunc("/deployment", pkg.CreateDeploymentHandler).Methods("POST")
+	m.HandleFunc("/deployment/plan", pkg.PlanDeploymentHandler).Methods("POST")
+	m.HandleFunc("/deployment/apply", pkg.ApplyDeploymentHandler).Methods("POST")
 
 	ea := pkg.NewEnsureAuth(&config, m)
 

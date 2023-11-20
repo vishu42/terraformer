@@ -9,6 +9,13 @@ if [ $# -lt 2 ]; then
     exit 1
 fi
 
+# create a directory to persist logs
+LOG_DIR=/usr/local/var/log/terraformer
+mkdir -p ${LOG_DIR}
+
+# run terraform in ci mode
+TF_IN_AUTOMATION=true
+
 useAzureCredentials="false"
 echo $ARM_CLIENT_ID
 # if ARM_CLIENT_ID and ARM_CLIENT_SECRET and ARM_TENANT_ID and ARM_SUBSCRIPTION_ID are set, set useAzureCredentials to true
@@ -21,7 +28,6 @@ if [ "${useAzureCredentials}" == "false" ]; then
     echo "ARM_CLIENT_ID and ARM_CLIENT_SECRET and ARM_TENANT_ID and ARM_SUBSCRIPTION_ID are not set"
     exit 1
 fi
-
 
 # # env var TERRAFORM_WORKDIR is required
 # if [ -z "${TERRAFORM_WORKDIR}" ]; then
@@ -45,9 +51,9 @@ fi
 terraform init -input=false
 
 if [ "${action}" == "plan" ]; then
-    terraform plan -input=false -out=${plan_file}
+    terraform plan -input=false -out=${LOG_DIR}/${plan_file}
 elif [ "${action}" == "apply" ]; then
-    terraform apply -input=false ${plan_file}
+    terraform apply -input=false ${LOG_DIR}/${plan_file}
 elif [ "${action}" == "destroy" ]; then
     terraform destroy -input=false
 else

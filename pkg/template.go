@@ -8,14 +8,24 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+/*
+template table schema
+# template table
+CREATE TABLE template (
+	template_id INT AUTO_INCREMENT PRIMARY KEY,
+	git_repository VARCHAR(255)
+	template_name VARCHAR(255)
+);
+*/
+
 const (
 	ErrGithubRepositoryEmpty = "github repository cannot be empty"
-	SQL_DSN                  = "root:root@tcp(127.0.0.1:3306)/dev"
 )
 
 type Template struct {
 	ID            int
 	GitRepository string
+	TemplateName  string
 }
 
 func ListTemplatesHandler(w http.ResponseWriter, r *http.Request) {
@@ -32,7 +42,7 @@ func ListTemplatesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, t := range templates {
-		fmt.Fprintf(w, "%d %s\n", t.ID, t.GitRepository)
+		fmt.Fprintf(w, "%d %s %s\n", t.ID, t.GitRepository, t.TemplateName)
 	}
 }
 
@@ -48,18 +58,27 @@ func CreateTemplateHandler(w http.ResponseWriter, r *http.Request) {
 
 	// if github repository is empty, return error
 	if githubRepository == "" {
-		http.Error(w, "github repository cannot be empty", http.StatusBadRequest)
+		http.Error(w, "githubRepository cannot be empty", http.StatusBadRequest)
 		return
 	}
 
-	err := CreateTemplate(githubRepository)
+	// get the templateName from the request body
+	templateName := r.FormValue("templateName")
+
+	// if templateName is empty, return error
+	if templateName == "" {
+		http.Error(w, "templateName cannot be empty", http.StatusBadRequest)
+		return
+	}
+
+	err := CreateTemplate(githubRepository, templateName)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 }
 
-func CreateTemplate(githubRepository string) error {
+func CreateTemplate(githubRepository, templateName string) error {
 	// github repo can't be empty
 	if githubRepository == "" {
 		return fmt.Errorf(ErrGithubRepositoryEmpty)
@@ -79,8 +98,8 @@ func CreateTemplate(githubRepository string) error {
 		return err
 	}
 
-	// insert github repository to "templates" table
-	_, err = db.Exec("INSERT INTO templates (git_repository) VALUES (?)", githubRepository)
+	// insert github repository to "template" table
+	_, err = db.Exec("INSERT INTO template (git_repository, template_name) VALUES (?, ?)", githubRepository, templateName)
 	if err != nil {
 		return err
 	}
@@ -103,7 +122,7 @@ func ListTemplates() (templates []Template, err error) {
 	}
 
 	// query the "templates" table
-	rows, err := db.Query("SELECT * FROM templates")
+	rows, err := db.Query("SELECT * FROM template")
 	if err != nil {
 		return
 	}
@@ -112,7 +131,7 @@ func ListTemplates() (templates []Template, err error) {
 	// iterate over the rows
 	for rows.Next() {
 		var t Template
-		err = rows.Scan(&t.ID, &t.GitRepository)
+		err = rows.Scan(&t.ID, &t.GitRepository, &t.TemplateName)
 		if err != nil {
 			return
 		}
@@ -122,7 +141,7 @@ func ListTemplates() (templates []Template, err error) {
 	return
 }
 
-func GetTemplate(templateId int) (template Template, err error) {
+func GetTemplate(templateId int64) (template Template, err error) {
 	// get template from the database
 	// Open a database connection
 	db, err := sql.Open("mysql", SQL_DSN)
@@ -137,7 +156,7 @@ func GetTemplate(templateId int) (template Template, err error) {
 	}
 
 	// query the "templates" table
-	err = db.QueryRow("SELECT * FROM templates WHERE template_id = ?", templateId).Scan(&template.ID, &template.GitRepository)
+	err = db.QueryRow("SELECT * FROM template WHERE template_id = ?", templateId).Scan(&template.ID, &template.GitRepository, &template.TemplateName)
 	if err != nil {
 		return
 	}
